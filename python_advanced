@@ -1,0 +1,187 @@
+Python 심화 
+
+CodeLion $ pip install requests // 터미널에서 실행 후 설치
+
+import requests 
+	
+print(requests.get)
+
+
+Function = 함수 -> 반복 작업 단순화
+Module = 모듈 -> 자주 쓰이는 코드의 집합 (함수, 변수 등) 
+
+requests.get(url) 
+모듈명.함수이름(url) 
+
+return: requests.response // 요런 형태로 리턴
+
+put / get / post / delete 등 함수 요청을 보내는 기능이 있음 
+
+Client 는 요청을 하는 존재 
+Server 는 응답을 하는 존재 
+
+return: requests.response 
+
+---------------------------
+
+import requests 
+
+url = "http://www.naver.com" 
+print(requests.get(url)) 
+
+
+실행시켜서 <Response [200]> 이라고 뜨면 성공적으로 요청된거 
+
+----------------------------
+
+import requests 
+
+url = "http://www.naver.com" 
+response = requests.get(url) 
+
+print(response.text) 
+
+----------------------------
+
+Response 는 text 외에도 다음과 같이 있음 
+https://docs.python-requests.org/en/master/api/#requests.Response
+
+print(response.url) 
+
+print(response.content) 
+
+print(response.encoding)
+
+print(response.headers) 
+
+print(response.json) 
+
+print(response.links) 
+
+print(response.ok) 
+
+print(response.status_code) 
+
+
+-----------------------------------
+
+import requests 
+from bs4 import BeautifulSoup 
+
+url = "http://www.naver.com" 
+response = requests.get(url) 
+
+print(type(response.text)) 
+
+print(type(BeautifulSoup(response.text, 'html.parser'))) 
+
+
+-> 두가지 print는 완전히 같은 값을 출력하나 사실은 다름 
+	<class 'str'>
+	<class 'bs4.BeautifulSoup'> 
+
+----------------------------------
+
+Parsing = 데이터를 의미있게 분석/변경하는 작업 
+Parser = parsing 작업을 도와주는 도구 -> html.parser 
+
+import requests 
+from bs4 import BeautifulSoup 
+
+url = "http://www.naver.com" 
+response = requests.get(url) 
+
+soup = BeautifulSoup(response.text, 'html.parser')
+
+print(soup.title) 
+
+-> <title>Naver</title> 출력함 
+
+----------------------------------
+
+import requests 
+from bs4 import BeautifulSoup 
+
+url = "http://www.naver.com" 
+response = requests.get(url) 
+
+print(response.text[:500]) // List를 사용해 문자열 잘라줌, 0~500까지만 보여줌 
+
+soup = BeautifulSoup(response.text, 'html.parser')
+
+print(soup.title) 
+
+-> 네이버 페이지의 타이틀만 500자 가져옴
+
+
+----------------------------------
+
+import requests 
+from bs4 import BeautifulSoup 
+
+url = "http://www.naver.com" 
+response = requests.get(url) 
+print(response.text) 
+
+soup = BeautifulSoup(response.text, 'html.parser')
+
+print(soup.title) 
+print(soup.title.string) // string = str 문자 의미 
+print(soup.span) // span 태그만 출력
+print(soup.findAll('span')) // 모든 span 출력 
+
+-> <title>Naver</title> 
+	Naver // string 실제 타이틀 값만 출력 
+	<span class = "ico_vert inner_shortcut"> 주요 서비스 바로가기 </span> 
+	마지막 줄은 모든 span 태그를 출력함
+
+
+BeautifulSoup 참고문서 https://www.crummy.com/software/BeautifulSoup/bs4/doc.ko/
+
+-----------------------------------
+
+import requests 
+from bs4 import BeautifulSoup 
+
+url = "http://www.daum.net" 
+response = requests.get(url) 
+
+soup = BeautifulSoup(response.text, 'html.parser')
+
+file = open("daum.html", "w") // html 파일 보기 위한 방법
+file.write(response.text) 
+file.close() 
+
+print(soup.title) 
+print(soup.title.string) 
+print(soup.span) 
+print(soup.findAll('span')) 
+
+-> 실행하면 이전에 출력했던 결과 + 파일트리에 daum.html 파일 생성 
+-> 이 중 실시간 검색어 정보만 출력하려고 함 
+-> 실시간 검색어 정보 태그의 공통점 찾기 
+	<a></a> 태그 사용
+	<class = "link_favorsch"> 사용 
+
+------------------------------------
+
+import requests 
+from bs4 import BeautifulSoup 
+
+url = "http://www.daum.net" 
+response = requests.get(url) 
+
+soup = BeautifulSoup(response.text, 'html.parser')
+
+# html 문서에서 모든 <a> 태그를 가져오는 코드 
+print(soup.findAll("a")) 
+
+# html 문서에서 모든 <a> 중 <class = "link_favorsch"> 가져오는 코드 
+print(soup.findAll("a", "link_favorsch")) 
+
+# 찾은 코드를 results에 담기 
+results = soup.findAll("a", "link_favorsch") 
+
+
+---------------------------------------
+
