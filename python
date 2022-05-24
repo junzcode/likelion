@@ -1,0 +1,402 @@
+# Python 강의 
+
+
+import random 
+import time
+
+for x in range(30): 
+	print(random.choice(["된장찌개", "부대찌개", "마라탕", "제육볶음", "라면"]))
+	print("문장 반복")
+
+
+while True: 
+	break
+	print(random.choice(["된장찌개", "부대찌개", "마라탕", "제육볶음", "라면"]))						
+  print("문장 반복")
+	time.sleep(1) 
+
+
+# Control + C 누르면 무한루프 멈춤 
+# 혹은 break 써주면 break 라인 만나는 순간에 멈춤
+
+
+# 변수 달기 ("lunch", "dinner" 등)
+
+lunch = random.choice(["된장찌개", "부대찌개", "마라탕", "제육볶음"])
+lunch = "냉장고" 
+dinner = random.choice(["된장찌개", "부대찌개", "마라탕", "제육볶음"]) 
+print(lunch) 
+
+# 두번째 냉장고 줄 때문에 자동적으로 첫 줄 삭제하고 바로 "냉장고"를 출력함
+
+
+
+# 터미널 
+
+# CodeLion $ python codelion.py 
+
+
+
+information = {"고향" : "분당", "취미" : "유튜브", "좋아하는 음식" : "오이김치"} 
+print(information)
+print(information.get("취미"))
+
+
+information = {"특기": "피아노", "사는곳": "서울"} 
+print(information.get("특기")) 
+print(information.get("사는곳"))
+
+
+
+
+
+# List 와 Dictionary 
+
+information = {"고향" : "분당", "취미" : "유튜브", "좋아하는 음식" : "오이김치"} 
+foods = ["된장찌개", "피자", "제육볶음"] 
+print(information.get("취미"))
+information["특기"] = "피아노" 
+information["사는곳"] = "서울" 
+del information["좋아하는 음식"] 
+print(information) 
+print(len(information))
+information.clear() 
+print(information)
+print(foods[0])
+foods.append("김밥")
+del foods[1] 
+print(foods) 
+
+
+# Del -> delete 약자 
+# Len -> length 약자 
+# Clear -> dictionary를 다 비움
+
+# print(foods[-1]) 쓰면 뒤에서부터 숫자셈 
+# print(foods[0]) 쓰면 제일 첫번째꺼 프린트 
+
+# Append -> foods에 김밥 추가
+
+
+
+
+for x in range(30): 
+		print(x) 
+
+
+-> 0~29까지 모든 값을 프린트하란 뜻
+
+
+foods = ["된장찌개", "피자", "제육볶음"] 
+for x in range(3): 
+	print(foods[x])
+
+for x in foods: 
+	print(x)
+
+
+information = {"고향":"분당", "취미":"유튜브", "좋아하는 음식":"비빔냉면"} 
+for x, y in information.items(): 
+	print(x) 
+	print(y)
+
+
+-> 요소 갯수가 바뀔 때마다 알아서 요소 하나씩 다 훑고 끊남
+
+
+
+
+for x in range(30): 
+	print(x) 
+	
+
+foods = ["된장찌개", "피자", "제육볶음"] 
+for x in range(3): 
+	print(foods[x])
+
+-> 요소 갯수만큼 하나씩 다 접근하는 방법 
+
+for x in foods: 
+	print(x) 
+ 
+-> 요소 갯수에 상관없이 하나씩 다 접근하는 방법
+
+
+
+information = {"고향": "분당", "취미": "유튜브", "좋아하는 음식": "국수"}
+for x, y in information.items(): 
+	print(x)
+	print(y)
+
+-> 요소 갯수에 상관없이 하나씩 다 접근 가능 
+
+
+
+
+
+# 집합 set 알아보기 
+
+# 리스트는 순서가 명확하나, 집합은 순서가 없음
+
+
+foods = ["된장찌개", "피자", "제육볶음"]
+foods_set1 = set(foods) 
+foods_set2 = set(["된장찌개", "피자", "제육볶음"]) 
+print(foods_set1)
+print(foods_set2) 
+
+
+-> 프린트해보면 안에 순서가 집합이라서 랜덤으로 나옴 
+
+
+foods = ["된장찌개", "피자", "제육볶음", "된장찌개"]
+foods_set = set(foods)
+print(foods)
+print(foods_set) 
+
+
+-> 프린트해보면  foods는 겹치는거 다 나오고(리스트), foods_set은 안나옴(집합) 
+
+
+
+menu1 = set(["된장찌개", "피자", "제육볶음"]) 
+menu2 = set(["된장찌개", "떡볶이", "김밥"]) 
+menu3 =  menu1 | menu 2 
+
+print(menu3) 
+
+
+-> menu3은 menu1 과 menu2 합친거 
+-> 겹친 된장찌개가 한 번만 나오고 두 메뉴가 합쳐지도록 나옴 
+
+
+
+
+menu1 = set(["된장찌개", "피자", "제육볶음"]) 
+menu2 = set(["된장찌개", "떡볶이", "김밥"]) 
+menu3 =  menu1 & menu 2 
+
+print(menu3) 
+
+
+-> 교집합인 겹친 메뉴만 골라서 '된장찌개' 출력 
+
+
+
+
+
+menu1 = set(["된장찌개", "피자", "제육볶음"]) 
+menu2 = set(["된장찌개", "떡볶이", "김밥"]) 
+menu3 =  menu1 - menu 2 
+
+print(menu3) 
+
+
+-> 차집합으로 겹친 메뉴만 골라서 빼줌 
+-> 된장찌개만 빼고 나머지 메뉴 출력
+
+
+
+
+# 만약에 
+
+import random 
+
+food = random.choice(["된장찌개", "피자", "제육볶음"])
+
+print(food) 
+if(food == "제육볶음"): 
+	print("곱빼기 주세요")
+else: 
+	print("그냥 주세요") 
+print("종료") 
+
+
+-> 들여쓰기 주의! If 아래 들여쓰기 되어야만 실행이 됨 
+
+
+
+
+
+lunch = ["된장찌개", "피자", "제육볶음", "짜장면"] 
+lunch.append("돈까스") 
+print(lunch)
+
+-> 돈까스 추가되어 출력 
+
+
+lunch = ["된장찌개", "피자", "제육볶음", "짜장면"] 
+while True: 
+	item = input("음식을 추가하세요 : ") 
+	lunch.append(item) 
+	print(lunch) 
+
+-> 아무 화면도 안나옴. 사용자의 입력 값을 item에 넣어줌
+-> while True: 하면 무한반복 / control + C 누르면 프로그램 종료 
+
+
+
+
+lunch = ["된장찌개", "피자", "제육볶음", "짜장면"] 
+while True: 
+	print(lunch) 
+	item = input("음식을 추가하세요 : ") 
+	if(item == "q"): 
+		break 
+	else: 
+		lunch.append(item) 
+	
+print(lunch) 
+set_lunch = set(lunch) 
+
+
+-> print 를 위족으로 올리면 메뉴가 미리 보임
+-> "q"를 누르면 프로그램이 종료되고, 아니면 메뉴 추가할 수 있도록 함 
+
+
+
+
+
+likelion.py 파이썬 파일 새로 만들기 
+
+
+set_lunch = set(["된장찌개", "피자", "제육볶음", "짜장면"]) 
+item = "짜장면" 
+print(set_lunch - set([item])) 
+set_lunch = set_lunch - set([item]) 
+print(set_lunch) 
+
+-> 짜장면이 빠진 값이 나옴 (두 번 출력) 
+
+
+set_dinner = set(["된장찌개", "피자", "제육볶음", "짜장면"]) 
+food = "짜장면" 
+set_dinner = set_dinner - set([food]) 
+print(set_dinner)
+
+-> 마찬가지 짜장면 빠진 값이 나옴
+
+
+
+import random 
+import time 
+
+lunch = ["된장찌개", "피자", "제육볶음", "짜장면"] 
+
+while True: 
+	print(lunch) 
+	item = input("음식을 추가하세요 : ") 
+	if(item == "q"): 
+		break
+	else: 
+		lunch.append(item) 
+print(lunch) 
+
+set_lunch = set(lunch) 
+while True: 
+	print(set_lunch) 
+	item = input("음식을 삭제하세요 : ") 
+	if(item == "q"): 
+		break 
+	else: 
+		set_lunch = set_lunch - set([item]) 
+
+print(set_lunch, "중에서 선택합니다") 
+print("5") 
+time.sleep(1)
+print("4") 
+time.sleep(1) 
+print("3")
+time.sleep(1) 
+print("2")
+time.sleep(1) 
+print("1") 
+time.sleep(1) 
+print(random.choice(list(set_lunch))) 
+
+
+-> time과 random 실행하기 위해 상단에 import 해야함 
+-> import random / import time 제일 상단에 두 줄 써줌 
+
+
+
+
+함수 알아보기 
+
+def make_dolcelatte(): 
+	print("1. 얼음을 넣는다") 
+	print("2. 연유를 30ml 넣는다") 
+	print("3. 찬 우유를 넣는다") 
+	print("4. 에소프레소샷을 넣는다") 
+
+def make_blueberry_smoothie(): 
+	print("1. 블루베리 20g을 넣는다") 
+	print("2. 우유 300ml를 넣는다") 
+	print("3. 얼음을 넣는다") 
+	print("4. 믹서기에 간다") 
+
+def make_simple_latte(): 
+	print("1. 커피를 넣는다")
+	print("2. 우유를 넣는다")
+	print("3. 신나게 섞는다")
+
+
+make_simple_latte()
+make_blueberry_smoothie() 
+
+
+-> 음료 만드는 법 세팅하고 골라 실행. Def = 함수 
+-> 마지막 실행 라인에 " : " 없는거 주의!!!! 
+
+
+
+<익명게시판 만들기> 
+
+Dictionary 는 key(콤마 앞부분)와 value(콤마 뒷부분)를 저장함 
+
+dictionary에 질문과 답변 저장 
+[
+	{"질문": "취미가 뭐야", "답변": "영화보기"} 
+	{"질문": "특기는 뭐야", "답변": "댄스야"} 
+]
+
+	
+// 
+
+
+codelion.py 
+
+
+total_dictionary = {}  
+
+while True: 
+	question = input("질문을 입력해주세요: ")
+	if question == "q": 
+		break
+	else: 
+		total_dictionary[question] = "" 
+
+for i in total_dictionary:  
+	print(i) 
+	answer = input("답변을 입력해주세요: ") 
+	total_dictionary[i] = answer 
+print(total_dictionary) 
+
+
+--------------
+
+total_list = [] // 리스트일 때는 대괄호 
+
+while True: 
+	question = input("질문을 입력해주세요: ")
+	if question == "q": 
+		break
+	else: 
+		total_list.append({"질문": question, "답변": ""})
+
+for i in total_list: 
+	print(i["질문"]) 
+	answer = input("답변을 입력해주세요: ") 
+	i["답변"] = answer 
+print(total_dictionary) 
+
